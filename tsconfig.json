@@ -1,16 +1,13 @@
 {
-	"compilerOptions": {
-		"target": "es6",
-		"module": "commonjs",
-		"lib": ["es6", "es2015", "dom"],
-		"declaration": true,
-		"outDir": "./build",
-		"rootDir": "./src",
-		"strict": true,
-		"types": ["node"],
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"resolveJsonModule": true
-	},
-	"exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es6", "es2015", "dom"],
+    "types": ["node"],
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true
+  }
 }
