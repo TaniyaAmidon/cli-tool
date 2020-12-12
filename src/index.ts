@@ -1,1 +1,1 @@
-console.log('hello world1');
+export {run} from '@oclif/command'
