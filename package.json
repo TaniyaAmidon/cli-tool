@@ -6,12 +6,18 @@
   "bin": {
     "my-cli": "./bin/run"
   },
+  "oclif": {
+    "commands": "./lib/commands"
+  },
   "bugs": "https://github.com/TaniyaAmidon//issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.0",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.21.0",
     "inquirer": "^7.3.3",
+    "node-notifier": "^9.0.0",
     "tslib": "^1.14.1"
   },
   "devDependencies": {
@@ -21,6 +27,7 @@
     "@types/inquirer": "^7.3.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.17.48",
+    "@types/node-notifier": "^8.0.0",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
