@@ -7,12 +7,7 @@
     "my-cli": "./bin/run"
   },
   "oclif": {
-    "commands": "./lib/commands",
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-autocomplete",
-      "@oclif/plugin-commands"
-    ]
+    "commands": "./lib/commands"
   },
   "bugs": "",
   "dependencies": {
