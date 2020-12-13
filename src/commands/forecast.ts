@@ -1,7 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import * as inquirer from "inquirer";
-import axios, { AxiosResponse } from "axios";
-import * as chalk from "chalk";
+import axios from "axios";
+import chalk from "chalk";
 
 interface Questions {
   location: "string";
@@ -20,21 +20,29 @@ export default class Forecast extends Command {
     }),
   };
 
-  callWeatherApi = async (input: string = "") => {
+  getWeather = async (input: string = "") => {
     const URL = "http://wttr.in/";
-    const response: AxiosResponse<any> = await axios.get(`${URL}/${input}`, {
-      headers: {
-        "User-Agent": "curl/7.54.0",
-      },
-    });
-    console.log(response.data);
+    try {
+      const { data } = await axios.get(`${URL}/${input}`, {
+        headers: {
+          "User-Agent": "curl/7.54.0",
+        },
+      });
+      input === ""
+        ? console.log("\n", data)
+        : console.log(" ", chalk.yellow(data));
+    } catch (err) {
+      console.log(
+        `Uh no! Having trouble getting weather this time: ${err.code}`
+      );
+    }
   };
 
   async run() {
     const { flags } = this.parse(Forecast);
 
     if (!flags.location) {
-      this.callWeatherApi();
+      this.getWeather();
     }
 
     if (flags.location) {
@@ -66,7 +74,8 @@ export default class Forecast extends Command {
         {
           type: "input",
           name: "locations",
-          message: "Add your locations.",
+          message:
+            "Add multiple locations separated by commas e.g. london,paris",
           when: (answers) => answers.multiple === true,
         },
         {
@@ -80,20 +89,21 @@ export default class Forecast extends Command {
 
       const { location, multiple, oneLine, locations } = questions;
       if (location && multiple) {
-        console.log(chalk.blue.bold("Here's your weather forecast"), "\n");
+        console.log(
+          chalk.blueBright.bold("\n", "Here's your weather forecast:", "\n")
+        );
 
-        this.callWeatherApi(`${location}?format=3`);
+        this.getWeather(`${location}?format=3`);
 
         locations.split(",").forEach((location: string) => {
-          this.callWeatherApi(`${location}?format=3`);
+          this.getWeather(`${location}?format=3`);
         });
       } else if (oneLine) {
         const formattedLocation = `${location}?format=3`;
-        console.log("\n");
-        this.callWeatherApi(formattedLocation);
+        console.log("\n", chalk.blueBright.bold("Weather in:"));
+        this.getWeather(formattedLocation);
       } else {
-        console.log("\n");
-        this.callWeatherApi(location);
+        this.getWeather(location);
       }
     }
   }
