@@ -1,6 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import * as inquirer from "inquirer";
 import axios from "axios";
+import chalk from "chalk";
 
 export default class Forecast extends Command {
   static description = "get the weather forecast";
