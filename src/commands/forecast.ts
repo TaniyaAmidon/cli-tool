@@ -1,21 +1,28 @@
 import { Command, flags } from "@oclif/command";
 import * as inquirer from "inquirer";
-import axios from "axios";
-import chalk from "chalk";
+import axios, { AxiosResponse } from "axios";
+import * as chalk from "chalk";
+
+interface Questions {
+  location: "string";
+  multiple: "boolean";
+  oneLine: "boolean";
+  locations: "string";
+}
 
 export default class Forecast extends Command {
-  static description = "get the weather forecast";
+  static description = "Get weather forecast";
 
   static flags = {
     location: flags.boolean({
       char: "l",
-      description: "Name of the location e.g. London",
+      description: "Get weather of a specified location e.g. London",
     }),
   };
 
-  callWeatherApi = async (input: string) => {
-    const url = "http://wttr.in/";
-    const response = await axios.get(`${url}/${input}`, {
+  callWeatherApi = async (input: string = "") => {
+    const URL = "http://wttr.in/";
+    const response: AxiosResponse<any> = await axios.get(`${URL}/${input}`, {
       headers: {
         "User-Agent": "curl/7.54.0",
       },
@@ -25,32 +32,30 @@ export default class Forecast extends Command {
 
   async run() {
     const { flags } = this.parse(Forecast);
+
     if (!flags.location) {
-      this.callWeatherApi("");
+      this.callWeatherApi();
     }
 
     if (flags.location) {
-      const questions = await inquirer.prompt([
+      const questions: Questions = await inquirer.prompt([
         {
           type: "input",
           name: "location",
-          message: "Add your location",
-          validate: (location) => {
-            if (location.length < 0) {
-              return "Add a valid location.";
+          message: "Weather in?",
+          validate: (location: string) => {
+            if (location.length < 1) {
+              return chalk.red("Uh oh, please add a valid location.");
             }
+            // only allow letters and spaces
             const regex = /^[a-zA-Z\s]*$/;
             if (location.length > 0 && !location.match(regex)) {
-              return "invalid";
+              return chalk.red(
+                "I see some fancy characters there. Please add a valid location."
+              );
             }
             return true;
           },
-        },
-        {
-          type: "confirm",
-          name: "oneLine",
-          message: "Do you want one line format?",
-          default: false,
         },
         {
           type: "confirm",
@@ -64,24 +69,31 @@ export default class Forecast extends Command {
           message: "Add your locations.",
           when: (answers) => answers.multiple === true,
         },
+        {
+          type: "confirm",
+          name: "oneLine",
+          message: "Do you want single line weather format?",
+          default: false,
+          when: (answers) => answers.multiple === false,
+        },
       ]);
 
-      if (questions.multiple) {
-        console.log("weathers", "\n");
-        if (questions.location) {
-          this.callWeatherApi(`${questions.location}?format=3`);
-        }
+      const { location, multiple, oneLine, locations } = questions;
+      if (location && multiple) {
+        console.log(chalk.blue.bold("Here's your weather forecast"), "\n");
 
-        questions.locations.split(",").forEach((location: string) => {
+        this.callWeatherApi(`${location}?format=3`);
+
+        locations.split(",").forEach((location: string) => {
           this.callWeatherApi(`${location}?format=3`);
         });
-      } else if (questions.oneLine) {
-        const location = `${questions.location}?format=3`;
+      } else if (oneLine) {
+        const formattedLocation = `${location}?format=3`;
         console.log("\n");
-        this.callWeatherApi(location);
+        this.callWeatherApi(formattedLocation);
       } else {
         console.log("\n");
-        this.callWeatherApi(questions.location);
+        this.callWeatherApi(location);
       }
     }
   }
