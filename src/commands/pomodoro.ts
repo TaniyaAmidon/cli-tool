@@ -6,5 +6,12 @@ export default class Pomodoro extends Command {
 
   static flags = {};
 
-  async run() {}
+  async run() {
+    notifier.notify({
+      title: "My notification",
+      message: "Hello, there!",
+      sound: "Glass",
+      wait: true,
+    });
+  }
 }
