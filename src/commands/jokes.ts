@@ -7,8 +7,6 @@ import chalkAnimation from "chalk-animation";
 export default class Jokes extends Command {
   static description = "Get a random joke.";
 
-  static flags = {};
-
   async run() {
     this.getJokes();
   }
@@ -34,7 +32,7 @@ export default class Jokes extends Command {
         console.log("\n", "(〃´艸｀)");
       }, 6000);
     } catch (e) {
-      console.log(e.message);
+      console.log(chalk.red(e.message));
     }
   };
 }

@@ -33,7 +33,8 @@ USAGE
 
 <!-- commands -->
 * [`my-cli forecast`](#my-cli-forecast)
-* [`my-cli jokes [FILE]`](#my-cli-jokes-file)
+* [`my-cli jokes`](#my-cli-jokes)
+* [`my-cli pomodoro [FILE]`](#my-cli-pomodoro-file)
 
 ## `my-cli forecast`
 
@@ -49,13 +50,24 @@ OPTIONS
 
 _See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/forecast.ts)_
 
-## `my-cli jokes [FILE]`
+## `my-cli jokes`
+
+Get a random joke.
+
+```
+USAGE
+  $ my-cli jokes
+```
+
+_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
+
+## `my-cli pomodoro [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ my-cli jokes [FILE]
+  $ my-cli pomodoro [FILE]
 
 OPTIONS
   -f, --force
@@ -63,5 +75,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
+_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/pomodoro.ts)_
 <!-- commandsstop -->
