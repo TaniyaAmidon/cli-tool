@@ -33,7 +33,7 @@ USAGE
 
 <!-- commands -->
 * [`my-cli forecast`](#my-cli-forecast)
-* [`my-cli help [COMMAND]`](#my-cli-help-command)
+* [`my-cli jokes [FILE]`](#my-cli-jokes-file)
 
 ## `my-cli forecast`
 
@@ -49,20 +49,19 @@ OPTIONS
 
 _See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/forecast.ts)_
 
-## `my-cli help [COMMAND]`
+## `my-cli jokes [FILE]`
 
-display help for my-cli
+describe the command here
 
 ```
 USAGE
-  $ my-cli help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
+  $ my-cli jokes [FILE]
 
 OPTIONS
-  --all  see all commands in CLI
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
+_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
 <!-- commandsstop -->
