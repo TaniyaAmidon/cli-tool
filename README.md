@@ -34,7 +34,8 @@ USAGE
 <!-- commands -->
 * [`my-cli forecast`](#my-cli-forecast)
 * [`my-cli jokes`](#my-cli-jokes)
-* [`my-cli pomodoro [FILE]`](#my-cli-pomodoro-file)
+* [`my-cli pomodoro`](#my-cli-pomodoro)
+* [`my-cli task_manager [FILE]`](#my-cli-task_manager-file)
 
 ## `my-cli forecast`
 
@@ -52,7 +53,7 @@ _See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/b
 
 ## `my-cli jokes`
 
-Get a random joke.
+Get a random joke
 
 ```
 USAGE
@@ -61,13 +62,27 @@ USAGE
 
 _See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
 
-## `my-cli pomodoro [FILE]`
+## `my-cli pomodoro`
+
+Set a pomodoro timer.
+
+```
+USAGE
+  $ my-cli pomodoro
+
+OPTIONS
+  -c, --custom  Add a custom time
+```
+
+_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/pomodoro.ts)_
+
+## `my-cli task_manager [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ my-cli pomodoro [FILE]
+  $ my-cli task_manager [FILE]
 
 OPTIONS
   -f, --force
@@ -75,5 +90,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/pomodoro.ts)_
+_See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/task_manager.ts)_
 <!-- commandsstop -->

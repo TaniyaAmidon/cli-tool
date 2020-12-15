@@ -10,7 +10,7 @@ export default class Pomodoro extends Command {
   static flags = {
     custom: flags.boolean({
       char: "c",
-      description: "Add a custom time.",
+      description: "Add a custom time",
     }),
   };
 

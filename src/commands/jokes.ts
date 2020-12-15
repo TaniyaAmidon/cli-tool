@@ -5,7 +5,7 @@ import { Command, flags } from "@oclif/command";
 import chalkAnimation from "chalk-animation";
 
 export default class Jokes extends Command {
-  static description = "Get a random joke.";
+  static description = "Get a random joke";
 
   async run() {
     this.getJokes();
