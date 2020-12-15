@@ -46,8 +46,9 @@ export default class Forecast extends Command {
   }
 
   getWeather = async (input: string = "") => {
-    const URL = "http://wttr.in/";
     try {
+      const URL = "http://wttr.in/";
+
       const { data } = await axios.get(`${URL}/${input}`, {
         headers: {
           "User-Agent": "curl/7.54.0",
@@ -58,7 +59,7 @@ export default class Forecast extends Command {
         : console.log(" ", chalk.yellow(data));
     } catch (err) {
       console.log(
-        `Uh no! Having trouble getting weather this time: ${err.code}`
+        `Uh no! Having trouble getting weather this time: ${err.message}`
       );
     }
   };
