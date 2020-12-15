@@ -40,7 +40,7 @@ export default class Pomodoro extends Command {
   notifier = () => {
     notifier.notify({
       title: "My notification",
-      message: "Well done, you earned your break",
+      message: "Well done, you earned your break!!",
       sound: "Glass",
       wait: true,
     });
