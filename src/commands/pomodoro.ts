@@ -23,9 +23,9 @@ export default class Pomodoro extends Command {
           type: "input",
           name: "customTime",
           message: "Add a custom time in minutes.",
-          validate: (location: string) => {
-            if (location.length < 1) {
-              return chalk.red("Uh oh, please add a valid location.");
+          validate: (time: string) => {
+            if (time.length < 1) {
+              return chalk.red("uh oh! you haven't added a time yet.");
             }
             return true;
           },
@@ -40,15 +40,15 @@ export default class Pomodoro extends Command {
   notifier = () => {
     notifier.notify({
       title: "My notification",
-      message: "Well done, you earned your break!!",
+      message: "Well done, you earned your break 😁!!",
       sound: "Glass",
       wait: true,
     });
   };
 
-  setTime = (timeout: string = "1") => {
+  setTime = (timeout: string = "25") => {
     const time = parseInt(timeout) * 60 * 100;
-    console.log(chalk.green(`Setting timer for ${timeout} min`));
+    console.log(chalk.green("\n", `Setting timer for ${timeout} min`));
     setTimeout(this.notifier, time);
   };
 }
