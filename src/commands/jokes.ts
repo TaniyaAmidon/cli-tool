@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import { lowerFirst } from "lodash";
 import axios from "axios";
 import { Command, flags } from "@oclif/command";
 import chalkAnimation from "chalk-animation";
