@@ -24,12 +24,35 @@ export default class TaskManager extends Command {
   };
 
   async run() {
-    this.writeToFile();
+    const { flags } = this.parse(TaskManager);
+    if (flags.add) {
+      this.writeToFile();
+    }
+    if (flags.update) {
+      // list all tasks
+      // choose one to update
+      // update
+    }
+    if (flags.delete) {
+      // list all tasks
+      // choose one to delete
+      // delete
+    }
+    if (flags.check) {
+      // list all tasks
+      // check the task done
+    } else {
+      // list all
+    }
   }
 
   writeToFile = () => {
     //fs.mkdirSync("/tmp");
-    fs.writeFileSync("/tmp/test.MD", "hello", { encoding: "utf-8" });
-    console.log("done");
+    fs.writeFileSync("test.MD", "hello", { encoding: "utf-8" });
+  };
+
+  readFile = () => {
+    const a = fs.readFileSync("test.MD", { encoding: "utf-8" });
+    console.log(a);
   };
 }
