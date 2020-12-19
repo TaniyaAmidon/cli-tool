@@ -3,6 +3,7 @@ import notifier from "node-notifier";
 import * as inquirer from "inquirer";
 import chalk from "chalk";
 import { Answers } from "inquirer";
+import dayjs from "dayjs";
 
 export default class Pomodoro extends Command {
   static description = "Set a pomodoro timer.";
@@ -49,8 +50,15 @@ export default class Pomodoro extends Command {
   setTime = (timeout: string = "25") => {
     // convert time to milliseconds
     const time = parseInt(timeout) * 60 * 1000;
-
-    console.log(chalk.green("\n", `Setting timer for ${timeout} min`));
+    const newTime = dayjs().add(parseInt(timeout), "minute");
+    console.log(
+      chalk.yellow(
+        "\n",
+        `Setting timer for ${timeout} minutes. \n Your break finishes at ${newTime.format(
+          "hh:mm:ss"
+        )}`
+      )
+    );
     setTimeout(this.notifier, time);
   };
 }
