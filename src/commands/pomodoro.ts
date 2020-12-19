@@ -47,7 +47,9 @@ export default class Pomodoro extends Command {
   };
 
   setTime = (timeout: string = "25") => {
-    const time = parseInt(timeout) * 60 * 100;
+    // convert time to milliseconds
+    const time = parseInt(timeout) * 60 * 1000;
+
     console.log(chalk.green("\n", `Setting timer for ${timeout} min`));
     setTimeout(this.notifier, time);
   };
