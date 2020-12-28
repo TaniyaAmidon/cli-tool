@@ -34,8 +34,9 @@ USAGE
 <!-- commands -->
 * [`my-cli forecast`](#my-cli-forecast)
 * [`my-cli jokes`](#my-cli-jokes)
+* [`my-cli new [FILE]`](#my-cli-new-file)
 * [`my-cli pomodoro`](#my-cli-pomodoro)
-* [`my-cli task_manager [FILE]`](#my-cli-task_manager-file)
+* [`my-cli task_manager`](#my-cli-task_manager)
 
 ## `my-cli forecast`
 
@@ -62,6 +63,22 @@ USAGE
 
 _See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
 
+## `my-cli new [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ my-cli new [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/new.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/new.ts)_
+
 ## `my-cli pomodoro`
 
 Set a pomodoro timer.
@@ -76,18 +93,19 @@ OPTIONS
 
 _See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/pomodoro.ts)_
 
-## `my-cli task_manager [FILE]`
+## `my-cli task_manager`
 
-describe the command here
+Task manager
 
 ```
 USAGE
-  $ my-cli task_manager [FILE]
+  $ my-cli task_manager
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -a, --add     Add a task.
+  -c, --check   Mark as completed.
+  -d, --delete  Delete a task.
+  -l, --list    List tasks.
 ```
 
 _See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/task_manager.ts)_

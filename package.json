@@ -1,10 +1,10 @@
 {
-  "name": "my-cli",
-  "description": "My first cli.",
-  "version": "0.0.1",
+  "name": "daily-tools",
+  "description": "Multi tool CLI",
+  "version": "1.0.0",
   "author": "Taniya Amidon",
   "bin": {
-    "my-cli": "./bin/run"
+    "daily-tools": "./bin/run"
   },
   "oclif": {
     "commands": "./lib/commands"
@@ -14,10 +14,7 @@
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.0",
-    "@types/boxen": "^3.0.1",
-    "@types/cli-table": "^0.3.0",
     "axios": "^0.21.0",
-    "boxen": "^4.2.0",
     "chalk": "^4.1.0",
     "chalk-animation": "^1.6.0",
     "dayjs": "^1.9.7",
