@@ -3,6 +3,12 @@ import fs from "fs";
 import chalk from "chalk";
 import * as inquirer from "inquirer";
 import { Answers } from "inquirer";
+import * as _ from "lodash";
+
+const DIR_NAME = "/tmp/taskManager/";
+const FILE_NAME = "todo.txt";
+const FULL_PATH = `${DIR_NAME}${FILE_NAME}`;
+const CHECK_MARK = "✔︎";
 
 export default class TaskManager extends Command {
   static description = "Task manager";
@@ -87,19 +93,34 @@ export default class TaskManager extends Command {
     }
   }
 
+  createFile = () => {
+    if (!fs.existsSync(DIR_NAME)) {
+      fs.mkdir(DIR_NAME, (err) => {
+        if (err) throw err;
+      });
+    }
+    if (!fs.existsSync(FULL_PATH)) {
+      const data = ""; // adding an empty string at the initial file creation
+      fs.writeFile(FULL_PATH, data, (err) => {
+        if (err) throw err;
+      });
+    }
+  };
+
   writeToFile = (input: string) => {
-    fs.writeFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
+    this.createFile();
+    fs.writeFileSync(FULL_PATH, `${input}\n`, { encoding: "utf-8" });
   };
 
   readFileContent = () => {
+    this.createFile();
     const taskList = fs
-      .readFileSync("test.txt", {
+      .readFileSync(FULL_PATH, {
         encoding: "utf-8",
       })
       .split("\n");
-    //delete empty new line
-    taskList.splice(-1, 1);
-    return taskList;
+    //delete empty values
+    return _.compact(taskList);
   };
 
   listTasks = () => {
@@ -116,14 +137,17 @@ export default class TaskManager extends Command {
   };
 
   addTask = (input: string) => {
-    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
+    fs.appendFileSync(FULL_PATH, `${input}\n`, {
+      encoding: "utf-8",
+    });
     console.log("\n", chalk.yellow("New task added to the list."));
     this.listTasks();
   };
 
   checkTask = (index: string) => {
     const tasks = this.readFileContent();
-    if (tasks[parseInt(index)].includes("✔︎")) {
+
+    if (tasks[parseInt(index)].includes(CHECK_MARK)) {
       throw new Error(
         chalk.red("This task is already completed. Select another task.")
       );
