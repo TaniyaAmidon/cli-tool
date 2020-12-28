@@ -1,6 +1,6 @@
-# my-cli
+# Daily-tools
 
-My first cli.
+Multi task CLI.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/my-cli.svg)](https://npmjs.org/package/my-cli)
@@ -8,98 +8,92 @@ My first cli.
 [![License](https://img.shields.io/npm/l/my-cli.svg)](https://github.com/TaniyaAmidon//blob/master/package.json)
 
 <!-- toc -->
-* [my-cli](#my-cli)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Daily-tools](#daily-tools)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`daily-tools forecast`](#daily-tools-forecast)
+  - [`daily-tools jokes`](#daily-tools-jokes)
+  - [`daily-tools pomodoro`](#daily-tools-pomodoro)
+  - [`daily-tools task_manager`](#daily-tools-task_manager)
+  <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
-$ npm install -g my-cli
-$ my-cli COMMAND
+$ npm install -g daily-tools
+$ daily-tools COMMAND
 running command...
-$ my-cli (-v|--version|version)
-my-cli/0.0.1 darwin-x64 node-v12.1.0
-$ my-cli --help [COMMAND]
+$ daily-tools (-v|--version|version)
+daily-tools/1.0.0 darwin-x64 node-v12.1.0
+$ daily-tools --help [COMMAND]
 USAGE
-  $ my-cli COMMAND
+  $ daily-tools COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`my-cli forecast`](#my-cli-forecast)
-* [`my-cli jokes`](#my-cli-jokes)
-* [`my-cli new [FILE]`](#my-cli-new-file)
-* [`my-cli pomodoro`](#my-cli-pomodoro)
-* [`my-cli task_manager`](#my-cli-task_manager)
 
-## `my-cli forecast`
+- [Daily-tools](#daily-tools)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`daily-tools forecast`](#daily-tools-forecast)
+  - [`daily-tools jokes`](#daily-tools-jokes)
+  - [`daily-tools pomodoro`](#daily-tools-pomodoro)
+  - [`daily-tools task_manager`](#daily-tools-task_manager)
+
+## `daily-tools forecast`
 
 Get weather forecast
 
 ```
 USAGE
-  $ my-cli forecast
+  $ daily-tools forecast
 
 OPTIONS
   -l, --location  Get weather of a specified location e.g. London
 ```
 
-_See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/forecast.ts)_
+_See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/forecast.ts)_
 
-## `my-cli jokes`
+## `daily-tools jokes`
 
 Get a random joke
 
 ```
 USAGE
-  $ my-cli jokes
+  $ daily-tools jokes
 ```
 
-_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/jokes.ts)_
+_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/jokes.ts)_
 
-## `my-cli new [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ my-cli new [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-```
-
-_See code: [src/commands/new.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/new.ts)_
-
-## `my-cli pomodoro`
+## `daily-tools pomodoro`
 
 Set a pomodoro timer.
 
 ```
 USAGE
-  $ my-cli pomodoro
+  $ daily-tools pomodoro
 
 OPTIONS
   -c, --custom  Add a custom time
 ```
 
-_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/pomodoro.ts)_
+_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/pomodoro.ts)_
 
-## `my-cli task_manager`
+## `daily-tools task_manager`
 
 Task manager
 
 ```
 USAGE
-  $ my-cli task_manager
+  $ daily-tools task_manager
 
 OPTIONS
   -a, --add     Add a task.
@@ -108,5 +102,6 @@ OPTIONS
   -l, --list    List tasks.
 ```
 
-_See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v0.0.1/src/commands/task_manager.ts)_
+_See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/task_manager.ts)_
+
 <!-- commandsstop -->
