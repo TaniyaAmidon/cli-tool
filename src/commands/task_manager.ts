@@ -18,7 +18,7 @@ export default class TaskManager extends Command {
     }),
     check: flags.boolean({
       char: "c",
-      description: "Mark as done task.",
+      description: "Mark as completed.",
     }),
     delete: flags.boolean({
       char: "d",
@@ -31,7 +31,9 @@ export default class TaskManager extends Command {
 
     if (flags.add) {
       if (this.readFileContent().length === 10) {
-        throw new Error("you have 10 task");
+        throw new Error(
+          chalk.red("You already have 10 tasks. Delete some tasks to add more.")
+        );
       }
       const { task }: Answers = await inquirer.prompt([
         {
@@ -100,31 +102,43 @@ export default class TaskManager extends Command {
     return taskList;
   };
 
-  addTask = (input: string) => {
-    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
-    console.log("Task added");
+  listTasks = () => {
+    console.log(chalk.magenta.bold(`\n ---- Task List ---- \n`));
+    this.readFileContent().forEach((task, index) => {
+      if (task.includes("✔︎")) {
+        console.log(chalk.green(`${index + 1}. ${task}`));
+        console.log(chalk.magentaBright("---------------------"));
+      } else {
+        console.log(`${index + 1}. ${task}`);
+        console.log(chalk.magentaBright("---------------------"));
+      }
+    });
   };
 
-  listTasks = () => {
-    console.log(chalk.bold.bgYellow.blue(`\n To Do List \n`));
-    // if tasks are checked as done then add tick
-    this.readFileContent().forEach((task, index) => {
-      console.log(`${index + 1}. ${task}`);
-      console.log("----------------");
-    });
+  addTask = (input: string) => {
+    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
+    console.log("\n", chalk.yellow("New task added to the list."));
+    this.listTasks();
   };
 
   checkTask = (index: string) => {
     const tasks = this.readFileContent();
+    if (tasks[parseInt(index)].includes("✔︎")) {
+      throw new Error(
+        chalk.red("This task is already completed. Select another task.")
+      );
+    }
     tasks[parseInt(index)] = `${tasks[parseInt(index)]} ✔︎`;
     this.writeToFile(tasks.join("\n"));
-    console.log(`Marked as completed.`);
+    console.log(chalk.yellow("\n", "Another task completed 💪."));
+    this.listTasks();
   };
 
   deleteTask = (index: string) => {
     const tasks = this.readFileContent();
     tasks.splice(parseInt(index), 1);
     this.writeToFile(tasks.join("\n"));
-    console.log(`Successfully deleted.`);
+    console.log("\n", chalk.yellow(`Task deleted.`));
+    this.listTasks();
   };
 }
