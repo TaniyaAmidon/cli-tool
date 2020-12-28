@@ -30,10 +30,13 @@ export default class TaskManager extends Command {
     const { flags } = this.parse(TaskManager);
 
     if (flags.add) {
-      const question: Answers = await inquirer.prompt([
+      if (this.readFileContent().length === 10) {
+        throw new Error("you have 10 task");
+      }
+      const { task }: Answers = await inquirer.prompt([
         {
           type: "input",
-          name: "addTask",
+          name: "task",
           message: "Add a task.",
           validate: (time: string) => {
             if (time.length < 1) {
@@ -43,7 +46,7 @@ export default class TaskManager extends Command {
           },
         },
       ]);
-      this.appendToFile(question.addTask);
+      this.addTask(task);
     }
     if (flags.list) {
       this.listTasks();
@@ -52,7 +55,7 @@ export default class TaskManager extends Command {
       const { taskToDelete }: Answers = await inquirer.prompt([
         {
           type: "list",
-          name: "listTasks",
+          name: "taskToDelete",
           message: "Choose a task to delete.",
           choices: this.readFileContent().map((task, index) => {
             return {
@@ -64,23 +67,23 @@ export default class TaskManager extends Command {
       ]);
       this.deleteTask(taskToDelete);
     }
-    if (flags.delete) {
-      // list all tasks
-      // choose one to delete
-      // delete
-    }
     if (flags.check) {
-      // list all tasks
-      // check the task done
-    } else {
-      // list all
+      const { taskToCheck }: Answers = await inquirer.prompt([
+        {
+          type: "list",
+          name: "taskToCheck",
+          message: "Choose a task to mark as completed.",
+          choices: this.readFileContent().map((task, index) => {
+            return {
+              name: `${index + 1} - ${task} `,
+              value: index,
+            };
+          }),
+        },
+      ]);
+      this.checkTask(taskToCheck);
     }
   }
-
-  appendToFile = (input: string) => {
-    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
-    console.log("Task added");
-  };
 
   writeToFile = (input: string) => {
     fs.writeFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
@@ -97,13 +100,25 @@ export default class TaskManager extends Command {
     return taskList;
   };
 
+  addTask = (input: string) => {
+    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
+    console.log("Task added");
+  };
+
   listTasks = () => {
     console.log(chalk.bold.bgYellow.blue(`\n To Do List \n`));
     // if tasks are checked as done then add tick
     this.readFileContent().forEach((task, index) => {
-      console.log(`${index + 1}. ${task} ✔︎`);
+      console.log(`${index + 1}. ${task}`);
       console.log("----------------");
     });
+  };
+
+  checkTask = (index: string) => {
+    const tasks = this.readFileContent();
+    tasks[parseInt(index)] = `${tasks[parseInt(index)]} ✔︎`;
+    this.writeToFile(tasks.join("\n"));
+    console.log(`Marked as completed.`);
   };
 
   deleteTask = (index: string) => {
