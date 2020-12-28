@@ -123,14 +123,21 @@ export default class TaskManager extends Command {
   };
 
   listTasks = () => {
+    const taskList = this.readFileContent();
+    const taskLengths = taskList.map((task) => {
+      return task.length;
+    });
+    const maxLength = Math.max(...taskLengths) + 5;
+
     console.log(chalk.magenta.bold(`\n ---- Task List ---- \n`));
-    this.readFileContent().forEach((task, index) => {
+
+    taskList.forEach((task, index) => {
       if (task.includes("✔︎")) {
         console.log(chalk.green(`${index + 1}. ${task}`));
-        console.log(chalk.magentaBright("---------------------"));
+        console.log(chalk.magentaBright("-".repeat(maxLength)));
       } else {
         console.log(`${index + 1}. ${task}`);
-        console.log(chalk.magentaBright("---------------------"));
+        console.log(chalk.magentaBright("-".repeat(maxLength)));
       }
     });
   };
