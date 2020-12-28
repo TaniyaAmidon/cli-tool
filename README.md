@@ -1,4 +1,4 @@
-# Daily-tools
+# Daily-Tools
 
 Multi task CLI.
 
@@ -9,7 +9,7 @@ Multi task CLI.
 
 <!-- toc -->
 
-- [Daily-tools](#daily-tools)
+- [Daily-Tools](#daily-tools)
 - [Usage](#usage)
 - [Commands](#commands)
   - [`daily-tools forecast`](#daily-tools-forecast)
@@ -40,7 +40,7 @@ USAGE
 
 <!-- commands -->
 
-- [Daily-tools](#daily-tools)
+- [Daily-Tools](#daily-tools)
 - [Usage](#usage)
 - [Commands](#commands)
   - [`daily-tools forecast`](#daily-tools-forecast)
@@ -60,7 +60,7 @@ OPTIONS
   -l, --location  Get weather of a specified location e.g. London
 ```
 
-_See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/forecast.ts)_
+_See code: [src/commands/forecast.ts](https://github.com/TaniyaAmidon/cli-tool/blob/master/src/commands/forecast.ts)_
 
 ## `daily-tools jokes`
 
@@ -71,7 +71,7 @@ USAGE
   $ daily-tools jokes
 ```
 
-_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/jokes.ts)_
+_See code: [src/commands/jokes.ts](https://github.com/TaniyaAmidon/cli-tool/blob/master/src/commands/jokes.ts)_
 
 ## `daily-tools pomodoro`
 
@@ -85,7 +85,7 @@ OPTIONS
   -c, --custom  Add a custom time
 ```
 
-_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/pomodoro.ts)_
+_See code: [src/commands/pomodoro.ts](https://github.com/TaniyaAmidon/cli-tool/blob/master/src/commands/pomodoro.ts)_
 
 ## `daily-tools task_manager`
 
@@ -102,6 +102,6 @@ OPTIONS
   -l, --list    List tasks.
 ```
 
-_See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/v1.0.0/src/commands/task_manager.ts)_
+_See code: [src/commands/task_manager.ts](https://github.com/TaniyaAmidon/cli-tool/blob/master/src/commands/task_manager.ts)_
 
 <!-- commandsstop -->
