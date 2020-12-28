@@ -8,25 +8,21 @@ export default class TaskManager extends Command {
   static description = "Task manager";
 
   static flags = {
-    add: flags.boolean({
-      char: "a",
-      description: "Add a task.",
-    }),
     list: flags.boolean({
       char: "l",
       description: "List tasks.",
     }),
-    update: flags.boolean({
-      char: "u",
-      description: "Update a task.",
-    }),
-    delete: flags.boolean({
-      char: "d",
-      description: "Delete a task.",
+    add: flags.boolean({
+      char: "a",
+      description: "Add a task.",
     }),
     check: flags.boolean({
       char: "c",
       description: "Mark as done task.",
+    }),
+    delete: flags.boolean({
+      char: "d",
+      description: "Delete a task.",
     }),
   };
 
@@ -47,15 +43,26 @@ export default class TaskManager extends Command {
           },
         },
       ]);
-      this.writeToFile(question.addTask);
+      this.appendToFile(question.addTask);
     }
     if (flags.list) {
-      this.readFile();
+      this.listTasks();
     }
-    if (flags.update) {
-      // list all tasks
-      // choose one to update
-      // update
+    if (flags.delete) {
+      const { taskToDelete }: Answers = await inquirer.prompt([
+        {
+          type: "list",
+          name: "listTasks",
+          message: "Choose a task to delete.",
+          choices: this.readFileContent().map((task, index) => {
+            return {
+              name: `${index + 1} - ${task} `,
+              value: index,
+            };
+          }),
+        },
+      ]);
+      this.deleteTask(taskToDelete);
     }
     if (flags.delete) {
       // list all tasks
@@ -70,14 +77,39 @@ export default class TaskManager extends Command {
     }
   }
 
-  writeToFile = (input: string) => {
-    //check if file is empty or not
-    fs.appendFileSync("test.txt", `- ${input}\n`, { encoding: "utf-8" });
+  appendToFile = (input: string) => {
+    fs.appendFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
     console.log("Task added");
   };
 
-  readFile = () => {
-    const fileContent = fs.readFileSync("test.txt", { encoding: "utf-8" });
-    console.log(fileContent);
+  writeToFile = (input: string) => {
+    fs.writeFileSync("test.txt", `${input}\n`, { encoding: "utf-8" });
+  };
+
+  readFileContent = () => {
+    const taskList = fs
+      .readFileSync("test.txt", {
+        encoding: "utf-8",
+      })
+      .split("\n");
+    //delete empty new line
+    taskList.splice(-1, 1);
+    return taskList;
+  };
+
+  listTasks = () => {
+    console.log(chalk.bold.bgYellow.blue(`\n To Do List \n`));
+    // if tasks are checked as done then add tick
+    this.readFileContent().forEach((task, index) => {
+      console.log(`${index + 1}. ${task} ✔︎`);
+      console.log("----------------");
+    });
+  };
+
+  deleteTask = (index: string) => {
+    const tasks = this.readFileContent();
+    tasks.splice(parseInt(index), 1);
+    this.writeToFile(tasks.join("\n"));
+    console.log(`Successfully deleted.`);
   };
 }
