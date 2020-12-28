@@ -132,7 +132,7 @@ export default class TaskManager extends Command {
     console.log(chalk.magenta.bold(`\n ---- Task List ---- \n`));
 
     taskList.forEach((task, index) => {
-      if (task.includes("✔︎")) {
+      if (task.includes(CHECK_MARK)) {
         console.log(chalk.green(`${index + 1}. ${task}`));
         console.log(chalk.magentaBright("-".repeat(maxLength)));
       } else {
