@@ -55,11 +55,9 @@ export default class TaskManager extends Command {
         },
       ]);
       this.addTask(task);
-    }
-    if (flags.list) {
+    } else if (flags.list) {
       this.listTasks();
-    }
-    if (flags.delete) {
+    } else if (flags.delete) {
       const { taskToDelete }: Answers = await inquirer.prompt([
         {
           type: "list",
@@ -74,8 +72,7 @@ export default class TaskManager extends Command {
         },
       ]);
       this.deleteTask(taskToDelete);
-    }
-    if (flags.check) {
+    } else if (flags.check) {
       const { taskToCheck }: Answers = await inquirer.prompt([
         {
           type: "list",
@@ -90,6 +87,8 @@ export default class TaskManager extends Command {
         },
       ]);
       this.checkTask(taskToCheck);
+    } else {
+      this.listTasks();
     }
   }
 
