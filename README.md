@@ -1,6 +1,6 @@
 # Daily-Tools
 
-Multi task CLI.
+Multi task CLI tool created with oclif and typescript.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/my-cli.svg)](https://npmjs.org/package/my-cli)
