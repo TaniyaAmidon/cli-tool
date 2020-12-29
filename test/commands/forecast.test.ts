@@ -1,17 +1,10 @@
-import {expect, test} from '@oclif/test'
+import { expect, test } from "@oclif/test";
 
-describe('forecast', () => {
+describe("forecast", () => {
   test
-  .stdout()
-  .command(['forecast'])
-  .it('runs hello', ctx => {
-    expect(ctx.stdout).to.contain('hello world')
-  })
-
-  test
-  .stdout()
-  .command(['forecast', '--name', 'jeff'])
-  .it('runs hello --name jeff', ctx => {
-    expect(ctx.stdout).to.contain('hello jeff')
-  })
-})
+    .stdout()
+    .command(["forecast"])
+    .it("get current location forecast", (ctx) => {
+      expect(ctx.stdout).not.be.null;
+    });
+});

@@ -1,17 +1,17 @@
-import {expect, test} from '@oclif/test'
+import { expect, test } from "@oclif/test";
 
-describe('task_manager', () => {
+describe("task_manager", () => {
   test
-  .stdout()
-  .command(['task_manager'])
-  .it('runs hello', ctx => {
-    expect(ctx.stdout).to.contain('hello world')
-  })
+    .stdout()
+    .command(["task_manager"])
+    .it("list tasks when no flags provided", (ctx) => {
+      expect(ctx.stdout).not.be.null;
+    });
 
   test
-  .stdout()
-  .command(['task_manager', '--name', 'jeff'])
-  .it('runs hello --name jeff', ctx => {
-    expect(ctx.stdout).to.contain('hello jeff')
-  })
-})
+    .stdout()
+    .command(["task_manager", "--list"])
+    .it("list tasks", (ctx) => {
+      expect(ctx.stdout).not.be.null;
+    });
+});
